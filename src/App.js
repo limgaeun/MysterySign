@@ -9,7 +9,7 @@ let count = [10,10,20,25,35]
 let problem = [0,0,0,0,0]
 problem[0] =  Math.floor(Math.random() * (5))
 problem[1] =  Math.floor(Math.random() * (5))
-while (problem[0] === problem[1]) {
+while (problem[0] !== problem[1]) {
   problem[1] =  Math.floor(Math.random() * (5))
 }
 problem[2] =  3//Math.floor(Math.random() * (4))
