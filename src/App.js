@@ -29,8 +29,8 @@ let perfect = [
       [13,2,30]//0
     ],
     [//10
-      [346,3,1],//0
-      [37,16,5]//0
+      [257, 10, 52710],//0
+      [619, 5, 9162]//0
     ],
     [//11
       [1349,346,1],
@@ -59,14 +59,14 @@ let perfect = [
       [4,6,3]//0
     ],
     [//9
-      [349,349,924232],
-      [346,196,9162413111]//0
+      [349,349,761761]
+      [346,196,764914]//0
     ]
   ],
   [//C
     [//3
-      [123,456,162534],//0
-      [497,163,439671]//0
+      [123,456,0],//0
+      [497,163,24]//0
     ],
     [//5
       [16,9,175],//0
@@ -358,8 +358,19 @@ function A_6(fir,sec) {
 }
 
 function A_10(fir,sec) {
-  if (fir > sec) return fir%sec
-  else return sec%fir
+  let fr = String(fr)
+  let sc = String(sec)
+  let res = ''
+  fr = fr.replace(/2/g, '5')
+  sc = sc.replace(/2/g, '5')
+  fr = fr.replace(/5/g, '2')
+  sc = sc.replace(/5/g, '2')
+  fr = fr.replace(/6/g, '9')
+  sc = sc.replace(/6/g, '9')
+  fr = fr.replace(/9/g, '6')
+  sc = sc.replace(/9/g, '6')
+  res = fr + sc
+  return res
 }
 
 function A_11(fir,sec) {
@@ -423,37 +434,25 @@ function B_8(fir,sec) {
 }
 
 function B_9(fir,sec) {
-  let cut = [0,0,0,0,0,0,0,0,0,0]
+  let fr = String(fir)
+  let sc = String(sec)
   let res = ''
-  let j = 9
-  while (fir > 0) {
-    cut[fir % 10] += 1
-    fir = (fir - fir%10) / 10
+  for (i = 0; i < fr.length; i++){
+    tmp = fr[i]
+    tmp = parseInt(tmp, 10)
+    fr[i] = String(10-tmp)
   }
-  while (sec > 0) {
-    cut[sec % 10] += 1
-    sec = (sec - sec%10) / 10
+  for (i = 0; i < sc.length; i++){
+    tmp = sc[i]
+    tmp = parseInt(tmp, 10)
+    sc[i] = String(10-tmp)
   }
-  for ( j = 9 ; j >= 0 ; j--) {
-    if (cut[j] != 0) {
-      res += String(j)
-      res += String(cut[j])
-    }
-  }
+  res = fr + sc
   return res
 }
 
 function C_3(fir,sec) {
-  let fr = String(fir)
-  let sc = String(sec)
-  let res = ''
-  for (i = 0 ; i < fr.length ; i++) {
-    res += fr[i]
-    if (i < sc.length) {
-      res += sc[sc.length - 1 - i]
-    }
-  }
-  return res
+  return (fir/sec)*(fir%sec)
 }
 
 function C_5(fir,sec) {
